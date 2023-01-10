@@ -1,11 +1,15 @@
 executing
 preLoad
-	self halt.
-	spec useIceberg ifFalse: [ ^ self ].
+
+	(spec loading anySatisfy: [ :aLoadingSpec |
+		aLoadingSpec useIceberg isNotNil
+			and: [ aLoadingSpec useIceberg ] ])
+		ifFalse: [ ^ self ].
+
 	[ (IceRepositoryCreator new
 		location: projectDirectory asFileReference;
-		createRepository) register. ] 
-		on: Error 
+		createRepository) register. ]
+		on: Error
 		do: [ :e |
 		      	 self class printWarningToStdout: (String streamContents: [ :s |
 			 	s << 'Could not register the tested repository with Iceberg.';
