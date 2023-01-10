@@ -29,4 +29,4 @@ basicLoadProjectOn: aSmalltalkCI
 		aSmalltalkCI performMetacelloLoad: [ 
 			[ metacello load: self load ]
 			on: MetacelloIgnorePackageLoaded
-			do: [ :e | e resume: self ignoreImage ] ] ]
+			do: [ :e | e resume: self ignoreImage ] ] ].

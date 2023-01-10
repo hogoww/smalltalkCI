@@ -1,5 +1,7 @@
 executing
 preLoad
+	self halt.
+	spec useIceberg ifFalse: [ ^ self ].
 	[ (IceRepositoryCreator new
 		location: projectDirectory asFileReference;
 		createRepository) register. ] 
